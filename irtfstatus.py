@@ -26,5 +26,7 @@
 
 from ietfdata import datatracker
 
+dt = datatracker.DataTracker()
+
 # ==================================================================================================
 # vim: set tw=0 ai:
