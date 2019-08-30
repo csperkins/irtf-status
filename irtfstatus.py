@@ -24,9 +24,36 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # ==================================================================================================
 
+from datetime import datetime, timedelta
 from ietfdata import datatracker
 
+
 dt = datatracker.DataTracker()
+
+ietf_meetings = dt.meetings(meeting_type=dt.meeting_type("ietf"))
+for m in ietf_meetings:
+    now = datetime.now()
+
+    meeting_start = datetime.strptime(m.date, "%Y-%m-%d")
+    meeting_end   = meeting_start + timedelta(days = m.days - 1)
+
+    print(m.number)
+    print(m.city)
+    print(meeting_start)
+    print(meeting_end)
+
+    if meeting_start > now:
+        print("future")
+    elif meeting_end < now:
+        print("completed")
+    else:
+        print("ongoing")
+
+
+    print("")
+
+
+
 
 # ==================================================================================================
 # vim: set tw=0 ai:
